@@ -30,7 +30,7 @@ export const forgotPassword = async (req, res) => {
 
     // Correctly join the template path (avoid any manual "C:\" prepending)
     const templatePath = path.join(__dirname, "../mails/resetmail.html");
-    console.log("tt", templatePath.slice(1));
+
     let emailTemplate = fs.readFileSync(templatePath.slice(1), "utf8");
     // Replace the placeholder with the actual reset link
     emailTemplate = emailTemplate.replace("xxxresetlinkxxx", resetLink);
