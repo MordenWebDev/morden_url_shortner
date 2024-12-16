@@ -12,7 +12,7 @@ export const forgotPassword = async (req, res) => {
     // Check if user exists
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "User not found." });
+      return res.status(404).json({success:false, message: "User not found." });
     }
 
     // Generate reset token
@@ -20,10 +20,10 @@ export const forgotPassword = async (req, res) => {
     user.resetToken = resetToken;
     user.resetTokenExpiry = Date.now() + 3600000; // 1 hour
     await user.save();
-    const resetLink = `http://localhost:3000/password/reset/${resetToken}`;
+    const resetLink = `http://localhost:5173/password/reset/${resetToken}`;
     // Here you would send the reset link to the user's email
     console.log(
-      `Reset link: http://localhost:3000/password/reset/${resetToken}`,
+      `Reset link: http://localhost:5173/password/reset/${resetToken}`,
     );
     // Deriving __dirname in ES Modules
     const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -38,10 +38,10 @@ export const forgotPassword = async (req, res) => {
     // Send the email
     await sendEmail(email, "Password Reset Request", emailTemplate);
 
-    res.status(200).json({ message: "Password reset link sent." });
+    res.status(200).json({  success: true,message: "Password reset link sent." });
   } catch (error) {
     console.error("Error in forgotPassword:", error);
-    res.status(500).json({ message: "Server error while sending reset link." });
+    res.status(500).json({   success: false, message: "Server error while sending reset link." });
   }
 };
 
@@ -57,7 +57,7 @@ export const resetPassword = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(400).json({ message: "Invalid or expired token." });
+      return res.status(400).json({ success: false, message: "Invalid or expired token." });
     }
 
     // Hash new password and update user
@@ -66,9 +66,9 @@ export const resetPassword = async (req, res) => {
     user.resetTokenExpiry = undefined;
     await user.save();
 
-    res.status(200).json({ message: "Password reset successfully." });
+    res.status(200).json({ success: true, message: "Password reset successfully." });
   } catch (error) {
     console.error("Error in resetPassword:", error);
-    res.status(500).json({ message: "Server error while resetting password." });
+    res.status(500).json({   success: false, message: "Server error while resetting password." });
   }
 };

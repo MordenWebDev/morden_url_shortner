@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { login } from "@/api/auth";  // Import the login function
+import { resetpassword } from "@/api/forgetpassword";  // Import the login function
 import { useNavigate } from "react-router-dom"; // For redirection after login
 import { Link } from "react-router-dom";
 import toast from 'react-hot-toast';
+import { useParams } from "react-router-dom";
 
 
-const Login = () => {
- 
+const Resetpassword = () => {
+    const { token } = useParams();
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Initialize navigate for redirecting after login
 
@@ -25,16 +26,15 @@ const Login = () => {
 
     try {
       // Call the login API function
-      const data = await login(formData.email, formData.password);  // API call here
+      const data = await resetpassword(formData.password,token);  // API call here
 
-      if (data.token) {
-        // Save token to localStorage and redirect to dashboard
-        localStorage.setItem("authToken", data.token);
-        navigate("/");
-        toast.success('You have successfully logged in.');
+      if (data.success) {
+ 
+        navigate("/login");
+        toast.success(data.message);
    
       } else {
-        throw new Error("Login failed");
+        throw new Error("unable to reset password");
       }
     } catch (err) {
       
@@ -51,29 +51,12 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-sm space-y-6 rounded-lg bg-white p-6 shadow-md"
       >
-        <h2 className="text-center text-2xl font-semibold text-gray-800">Login</h2>
+        <h2 className="text-center text-2xl font-semibold text-gray-800">Reset Password</h2>
 
         <div className="space-y-4">
-          {/* Email Input */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <Input
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Password Input */}
-          <div>
+        <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
+              Enter New Password
             </label>
             <Input
               id="password"
@@ -85,11 +68,13 @@ const Login = () => {
               required
             />
           </div>
+
+
         </div>
 
         {/* Submit Button */}
         <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Submiting...": "submit"}
         </Button>
 
         {/* Links for Sign-up and Forgot Password */}
@@ -100,11 +85,7 @@ const Login = () => {
           Sign up
         </Link>
           </p>
-          <p>
-          <Link to="/forgot-password" className="text-blue-600 hover:underline">
-          Forgot Password?
-        </Link>
-          </p>
+      
         </div>
       </form>
       
@@ -112,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Resetpassword;

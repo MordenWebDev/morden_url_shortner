@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { login } from "@/api/auth";  // Import the login function
+import { signup } from "@/api/auth";  // Import the login function
 import { useNavigate } from "react-router-dom"; // For redirection after login
 import { Link } from "react-router-dom";
 import toast from 'react-hot-toast';
 
 
-const Login = () => {
+const Signup = () => {
  
 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -25,16 +25,16 @@ const Login = () => {
 
     try {
       // Call the login API function
-      const data = await login(formData.email, formData.password);  // API call here
+      const data = await signup(formData.email, formData.password);  // API call here
 
       if (data.token) {
-        // Save token to localStorage and redirect to dashboard
+      
         localStorage.setItem("authToken", data.token);
         navigate("/");
-        toast.success('You have successfully logged in.');
+        toast.success('You have successfully Signed up.');
    
       } else {
-        throw new Error("Login failed");
+        throw new Error("Signup failed");
       }
     } catch (err) {
       
@@ -51,7 +51,7 @@ const Login = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-sm space-y-6 rounded-lg bg-white p-6 shadow-md"
       >
-        <h2 className="text-center text-2xl font-semibold text-gray-800">Login</h2>
+        <h2 className="text-center text-2xl font-semibold text-gray-800">Sign up</h2>
 
         <div className="space-y-4">
           {/* Email Input */}
@@ -89,15 +89,15 @@ const Login = () => {
 
         {/* Submit Button */}
         <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Signing up..." : "Sign up"}
         </Button>
 
         {/* Links for Sign-up and Forgot Password */}
         <div className="mt-4 text-center text-sm text-gray-600">
           <p>
-            Don&apos;t have an account?{" "}
-            <Link to="/signup" className="text-blue-600 hover:underline">
-          Sign up
+            Alreday have  an account?{" "}
+            <Link to="/login" className="text-blue-600 hover:underline">
+          Login
         </Link>
           </p>
           <p>
@@ -112,4 +112,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

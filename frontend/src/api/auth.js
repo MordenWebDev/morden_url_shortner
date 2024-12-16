@@ -7,3 +7,10 @@ export const login = async (email, password) => {
   });
   return response.data; // Assuming the API returns a token
 };
+export const signup = async (email, password) => {
+  const response = await axios.post("http://localhost:3000/auth/register", {
+    email,
+    password,
+  });
+  return response.data; // Assuming the API returns a token
+};
