@@ -54,7 +54,7 @@ const Resetpassword = () => {
         <h2 className="text-center text-2xl font-semibold text-gray-800">Reset Password</h2>
 
         <div className="space-y-4">
-        <div>
+        <div className="grid gap-2">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Enter New Password
             </label>

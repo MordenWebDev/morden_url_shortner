@@ -7,6 +7,8 @@ import { Toaster } from 'react-hot-toast';
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/Forgetpassword";
 import Resetpassword from "./pages/Resetpassword";
+import Layout from "./pages/Layout";
+import Generateurl from "./pages/generateurl";
 const App = () => {
   return (
     <div>
@@ -25,7 +27,15 @@ const App = () => {
           path="/"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <Layout><Dashboard /></Layout>
+            </PrivateRoute>
+          }
+        />
+          <Route
+          path="/generateurl"
+          element={
+            <PrivateRoute>
+              <Layout><Generateurl /></Layout>
             </PrivateRoute>
           }
         />

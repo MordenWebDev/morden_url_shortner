@@ -55,7 +55,7 @@ const Login = () => {
 
         <div className="space-y-4">
           {/* Email Input */}
-          <div>
+          <div className=" grid gap-2">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
             </label>
@@ -71,7 +71,7 @@ const Login = () => {
           </div>
 
           {/* Password Input */}
-          <div>
+          <div className="grid gap-2">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Password
             </label>
