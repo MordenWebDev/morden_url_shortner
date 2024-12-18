@@ -1,7 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "@/pages/login";
-import Dashboard from "@/pages/dashboard";
+import Login from "@/pages/Login";
+import Dashboard from "@/pages/Dashboard";
 import PrivateRoute from "@/components/PrivateRoute";
 import { Toaster } from 'react-hot-toast';
 import Signup from "./pages/Signup";
