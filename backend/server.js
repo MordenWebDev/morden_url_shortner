@@ -11,10 +11,9 @@ connectDB();
 app.use(express.json());
 // Configure CORS
 app.use(cors({
-  origin: ["http://localhost:5173"], // Replace with your frontend's URL
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: true, // Allows requests from all origins
+  methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed HTTP methods
 }));
-
 // Routes
 app.use("/auth", authRoutes);
 app.use("/url", urlRoutes);
