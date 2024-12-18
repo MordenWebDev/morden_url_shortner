@@ -2,7 +2,7 @@
 const Generateurl = () => {
   return (
     <div>
-      generateurl
+     <h1>generateurl</h1> 
     </div>
   )
 }

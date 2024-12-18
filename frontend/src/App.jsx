@@ -8,7 +8,7 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/Forgetpassword";
 import Resetpassword from "./pages/Resetpassword";
 import Layout from "./pages/Layout";
-import Generateurl from "./pages/generateurl";
+import Generateurl from "./pages/Generateurl";
 const App = () => {
   return (
     <div>

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, SidebarTrigger } from "@/components/ui/sidebar";
 import { GalleryVerticalEnd } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
