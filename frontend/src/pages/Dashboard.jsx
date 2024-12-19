@@ -51,9 +51,9 @@ const Dashboard = () => {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
     {[
-      { title: "Total Links", value: data.totalLinks, icon: Link },
-      { title: "Total Clicks", value: data.totalClicks, icon: MousePointer },
-      { title: "Links Today", value: data.linksToday, icon: PlusCircle },
+      { title: "Total Links", value: data?.totalLinks, icon: Link },
+      { title: "Total Clicks", value: data?.totalClicks, icon: MousePointer },
+      { title: "Links Today", value: data?.linksToday, icon: PlusCircle },
     ].map((item) => (
       <div
         key={item.title}
@@ -67,7 +67,7 @@ const Dashboard = () => {
           <CardContent className="pt-6">
             <div className="flex items-center space-x-4">
               <item.icon className="h-10 w-10 text-black-500" />
-              <span className="text-4xl font-bold">{item.value}</span>
+              <span className="text-4xl font-bold">{item?.value}</span>
             </div>
           </CardContent>
         </Card>
@@ -91,7 +91,7 @@ const Dashboard = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.recentLinks.map((link) => (
+            {data?.recentLinks?.map((link) => (
               <TableRow key={link._id}>
                 <TableCell>
                   <TooltipProvider>
