@@ -85,11 +85,11 @@ export const login = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user._id,email:user.email }, JWT_SECRET, {
       expiresIn: JWT_EXPIRATION,
     });
-
-    res.status(200).json({ token });
+console.log("reqfrom local",token)
+    res.status(200).json({ token,email });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

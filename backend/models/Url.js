@@ -1,5 +1,6 @@
 // models/Url.js
 import mongoose from "mongoose";
+import moment from "moment";
 
 const urlSchema = new mongoose.Schema({
   originalUrl: { type: String, required: true },
@@ -22,6 +23,14 @@ const urlSchema = new mongoose.Schema({
     ],
     required: true,
   },
+},  { timestamps: true });
+
+// Override the `save` method to set `createdAt` with Moment.js
+urlSchema.pre('save', function (next) {
+
+    this.createdAt = moment().toDate(); // Set `createdAt` using Moment.js if not already set
+  
+  next();
 });
 
 const Url = mongoose.model("Url", urlSchema);

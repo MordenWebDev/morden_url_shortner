@@ -28,11 +28,15 @@ const Login = () => {
       const data = await login(formData.email, formData.password);  // API call here
 
       if (data.token) {
-        // Save token to localStorage and redirect to dashboard
-        localStorage.setItem("authToken", data.token);
-        navigate("/");
-        toast.success('You have successfully logged in.');
-   
+     // Save token to localStorage
+  localStorage.setItem("authToken", data.token);
+  localStorage.setItem("email", data.email);  // Store email in localStorage
+
+  // Show success message
+  toast.success('You have successfully logged in.');
+
+  // Now navigate to the dashboard
+  navigate("/");  // Redirect to the dashboard (or desired route)
       } else {
         throw new Error("Login failed");
       }

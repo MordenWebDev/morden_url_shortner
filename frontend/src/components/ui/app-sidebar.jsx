@@ -19,12 +19,17 @@ const data = {
           title: "Generate url",
           url: "/generateurl",
         },
+        {
+          title: "My urls",
+          url: "/myurls",
+        },
       ],
     },
   ],
 };
 
 export function AppSidebar(props) {
+  
   const location = useLocation(); // Get the current route
 
   return (
@@ -71,13 +76,14 @@ export function AppSidebar(props) {
       <SidebarRail />
 
       <SidebarFooter>
+      {localStorage.getItem('email')?
         <NavUser
           user={{
-            name: "shadcn",
-            email: "m@example.com",
-            avatar: "/avatars/shadcn.jpg",
+            name: "",
+            email: localStorage.getItem('email'),
+          
           }}
-        />
+        />:null}
       </SidebarFooter>
     </Sidebar>
   );
